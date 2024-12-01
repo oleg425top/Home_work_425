@@ -17,4 +17,8 @@ class Teacher:
         self.__experience = new_experience
 
     def get_teacher_data(self):
-        return f' Имя: {self.get_name()}\nОбразование {self.__education}\nОпыт работы {self.get_experienc()}'
+        return f'Имя: {self.get_name()}\nОбразование: {self.__education}\nОпыт работы: {self.get_experienc()} года'
+
+
+teacher_1 = Teacher('Иван Петров', 'БГПУ', 4)
+print(teacher_1.get_teacher_data())

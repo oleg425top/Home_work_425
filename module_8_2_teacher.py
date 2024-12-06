@@ -15,6 +15,7 @@ class Teacher:
 
     def set_experience(self, new_experience):
         self.__experience = new_experience
+        return print('Изменен опыт работы на', new_experience, 'лет')
 
     def get_teacher_data(self):
         return f'Имя: {self.get_name()}. Образование: {self.get_education()}. Опыт работы: {self.get_experience()} (года/лет)'
@@ -48,9 +49,9 @@ class DisciplineTeacher(Teacher):
     def get_job_title(self):
         return self.__job_title
 
-    def set_job_title(self, job_title):
-        self.__job_title = job_title
-        return job_title
+    def set_job_title(self, new_job_title):
+        self.__job_title = new_job_title
+        return self.__job_title
 
     def get_teacher_data(self):
         data = super().get_teacher_data()
@@ -72,6 +73,13 @@ class DisciplineTeacher(Teacher):
 
 
 teacher_1 = Teacher('Иван Петров', 'БГПУ', 4)
+print()
+print(teacher_1.get_teacher_data())
+print()
+print(teacher_1.add_mark('Вася Пупкин', 5))
+print(teacher_1.remove_mark('Иван Иванов', 3))
+print(teacher_1.give_a_consultation('9B'))
+print()
 teacher_1.set_experience(8)
 print()
 print(teacher_1.get_teacher_data())
@@ -85,3 +93,11 @@ print(teacher_2.get_teacher_data())
 print(teacher_2.add_mark('Коля Николаев', 2))
 print(teacher_2.remove_mark('Коля Николаев', 2))
 print(teacher_2.give_a_consultation('9Б'))
+print()
+teacher_2.set_job_title('завуч')
+teacher_2 = DisciplineTeacher('Николай Николаев', 'СГПА', 15, 'Алгебра', 'Преподаватель')
+print(teacher_2.get_teacher_data())
+print(teacher_2.add_mark('Коля Николаев', 2))
+print(teacher_2.remove_mark('Коля Николаев', 2))
+print(teacher_2.give_a_consultation('9Б'))
+print()

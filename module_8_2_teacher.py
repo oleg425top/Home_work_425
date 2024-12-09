@@ -36,7 +36,6 @@ class Teacher:
 
 
 class DisciplineTeacher(Teacher):
-
     def __init__(self, name, education, experience, discipline, job_title):
         super().__init__(name, education, experience)
         # self.__job_title = None

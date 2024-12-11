@@ -88,7 +88,7 @@ class Computer(PowerUnit, Motherboard, CP, RAM, SSD, VideoCard):
         VideoCard.__init__(self, model, memory_capacity)
 
     def __str__(self):
-        return f'{PowerUnit.__str__(self)}\n{Motherboard.__str__(self)}\n{CP.__str__(self)}\n{RAM.__str__(self)}\n{SSD.__str__(self)}\n{VideoCard.__str__(self)}'
+        return f'{self.mark}\n{PowerUnit.__str__(self)}\n{Motherboard.__str__(self)}\n{CP.__str__(self)}\n{RAM.__str__(self)}\n{SSD.__str__(self)}\n{VideoCard.__str__(self)}'
 
 
 comp = Computer('Pentium III', 'SuperBlock', 300, 'Dazzle_CX', 1400, 16, 16, 2400, 8, 'Radon 9200-SE', 32)

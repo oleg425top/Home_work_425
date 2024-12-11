@@ -87,6 +87,9 @@ class Computer:
         self.ssd = ssd
         self.video_card = video_card
 
+    def start(self):
+        return f'{self.power}{self.mother}{self.cp}{self.ram}{self.ssd}{self.video_card}'
+
 
 power_unit = PowerUnit('Set_com', 1600)
 mother = MotherBoard('BroadWater(GC)')
@@ -101,3 +104,4 @@ for items in [comp.power, comp.mother, comp.cp, comp.ram, comp.ssd, comp.video_c
         time.sleep(0.22)
     print()
     print(items)
+print(comp.start())

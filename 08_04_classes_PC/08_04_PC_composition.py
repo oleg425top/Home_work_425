@@ -104,4 +104,6 @@ for items in [comp.power, comp.mother, comp.cp, comp.ram, comp.ssd, comp.video_c
         time.sleep(0.22)
     print()
     print(items)
+
+[print(items)for items in [comp.power, comp.mother, comp.cp, comp.ram, comp.ssd, comp.video_card] ]
 print(comp.start())

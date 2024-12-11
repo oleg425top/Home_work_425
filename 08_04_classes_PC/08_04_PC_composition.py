@@ -9,19 +9,19 @@ class PowerUnit:
     def submit_voltage(self):
         return f'Подано напряжение...'
 
-    # def __str__(self):
-    #     return f'  Блок питания {self.name} мощностью {self.power} ватт {self.submit_voltage()}- готов к работе...'
+    def __str__(self):
+        return f'  Блок питания {self.name} мощностью {self.power} ватт\n  {self.submit_voltage()}\n  ..готов к работе...'
 
 
-class Motherboard:
+class MotherBoard:
     def __init__(self, chipset):
         self.chipset = chipset
 
     def redistribute_voltage(self):
         return f'Загрузка компонентов...'
 
-    # def __str__(self):
-    #     return f'  Chipset:{self.chipset}...\n{self.redistribute_voltage()}'
+    def __str__(self):
+        return f'  Chipset:{self.chipset}...\n  {self.redistribute_voltage()}'
 
 
 class CP:
@@ -32,8 +32,8 @@ class CP:
     def activate_turbo_mode(self):
         return f'  Активирован турбо режим...'
 
-    # def __str__(self):
-    #     return f"Частота: {self.clock_frequency}\n  Количество ядер: {self.number_of_cores}\n{self.activate_turbo_mode()}"
+    def __str__(self):
+        return f"  Частота: {self.clock_frequency}\n  Количество ядер: {self.number_of_cores}\n{self.activate_turbo_mode()}"
 
 
 class RAM:
@@ -47,8 +47,8 @@ class RAM:
     def upload_data(self):
         return f'UPLOADING DATA...'
 
-    # def __str__(self):
-    #     return f'RAM: {self.memory_capacity} GHZ\n  Frequency: {self.frequency_memory}\n  {self.load_data()}\n  {self.upload_data()}'
+    def __str__(self):
+        return f'RAM: {self.memory_capacity} GHZ\n  Frequency: {self.frequency_memory}\n  {self.load_data()}\n  {self.upload_data()}'
 
 
 class SSD:
@@ -61,8 +61,8 @@ class SSD:
     def delete_data(self):
         return f'DATA IS DELETING....'
 
-    # def __str__(self):
-    #     return f'SSD: {self.volume} TB\n  {self.safe_data()}\n  {self.delete_data()}'
+    def __str__(self):
+        return f'SSD: {self.volume} TB\n  {self.safe_data()}\n  {self.delete_data()}'
 
 
 class VideoCard:
@@ -73,45 +73,31 @@ class VideoCard:
     def display_on_screen(self):
         return f'Загрузка изображения....\n        HELLO WORLD!!!!'
 
-    # def __str__(self):
-    #     return f'VideoCard: {self.model}\n  Memory: {self.memory_capacity} GB\n  {self.display_on_screen()}'
+    def __str__(self):
+        return f'VideoCard: {self.model}\n  Memory: {self.memory_capacity} GB\n  {self.display_on_screen()}'
 
 
 class Computer:
-    def __init__(self):
-        self.power_unit = PowerUnit
-        self.mother_board = Motherboard()
-        self.cp = CP()
-        self.ram = RAM()
-        self.ssd = SSD()
-        self.video_card = VideoCard()
+    def __init__(self, power: object = PowerUnit, mother: object = MotherBoard, cp: object = CP, ram: object = RAM,
+                 ssd: object = SSD, video_card: object = VideoCard):
+        self.power = power
+        self.mother = mother
+        self.cp = cp
+        self.ram = ram
+        self.ssd = ssd
+        self.video_card = video_card
 
-    def start_computer(self):
-        self.power_unit.submit_voltage()
-        self.mother_board.redistribute_voltage()
-        self.cp.activate_turbo_mode()
-        self.ram.load_data()
-        self.ram.upload_data()
-        self.ssd.safe_data()
-        self.ssd.delete_data()
-        self.video_card.display_on_screen()
-
-
-
-
-    # def __str__(self):
-    #     return f'{PowerUnit.__str__()}\n{Motherboard.__str__(self)}\n{CP.__str__(self)}\n{RAM.__str__(self)}\n{SSD.__str__(self)}\n{VideoCard.__str__(self)}'
 
 power_unit = PowerUnit('Set_com', 1600)
-mother = Motherboard('BroadWater(GC)')
+mother = MotherBoard('BroadWater(GC)')
 cp = CP(2400, 16)
 ram = RAM(128, 2400)
 ssd = SSD(5)
 video_card = VideoCard('Radeon 9200-SE', 128)
-comp = Computer()
-for l in 'Loading...':
-    print(l, end='')
-    time.sleep(0.22)
-print()
-print(comp.start_computer())
-
+comp = Computer(power_unit, mother, cp, ram, ssd, video_card)
+for items in [comp.power, comp.mother, comp.cp, comp.ram, comp.ssd, comp.video_card]:
+    for l in 'Loading...':
+        print(l, end=' ')
+        time.sleep(0.22)
+    print()
+    print(items)

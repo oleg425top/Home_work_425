@@ -1,8 +1,11 @@
 class Teacher:
+    teacher_dict = {}
+
     def __init__(self, name, education, experience):
         self.__name = name
         self.__education = education
         self.__experience = experience
+        Teacher.teacher_dict[self.__name] = [self.__education, self.__experience]
 
     def get_name(self):
         return self.__name
@@ -34,13 +37,22 @@ class Teacher:
         self.class_of_school = class_of_school
         return f'{self.get_name()} провел консультацию в классе: {self.class_of_school}'
 
+    def fire_teacher(self):
+        if self.__name in Teacher.teacher_dict.keys():
+            Teacher.teacher_dict.pop(self.__name)
+            return f'Учитель {self.__name}  был уволен'
+        else:
+            return f'Учителя {self.__name}  уже уволили'
+
 
 class DisciplineTeacher(Teacher):
+    discipline_teacher_dict = {}
+
     def __init__(self, name, education, experience, discipline, job_title):
         super().__init__(name, education, experience)
-        # self.__job_title = None
         self.__job_title = job_title
         self.__discipline = discipline
+        DisciplineTeacher.discipline_teacher_dict[self.__name] = [self.__discipline]
 
     def get_discipline(self):
         return self.__discipline
@@ -69,3 +81,10 @@ class DisciplineTeacher(Teacher):
         super().give_a_consultation(class_of_school)
         return (f"{self.get_name()} провел консультацию в классе {class_of_school}\n"
                 f"По предмету {self.get_discipline()} как {self.__job_title}")
+
+    def fire_discipline_teacher(self):
+        if self.__name in DisciplineTeacher.discipline_teacher_dict.keys():
+            DisciplineTeacher.discipline_teacher_dict.pop(self.__name)
+            return f'Учитель {self.__name} по дисциплине {self.__discipline}  был уволен'
+        else:
+            return f'Учителя {self.__name} по дисциплине {self.__discipline} уже уволили'

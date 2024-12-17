@@ -44,6 +44,15 @@ class Teacher:
         else:
             return f'Учителя {self.__name}  уже уволили'
 
+    @staticmethod
+    def display_employer_data():
+        for name, data in Teacher.teacher_dict.items():
+            print(f'имя: {name}')
+            print(f'образование: {data[0]}')
+            print(f'опыт: {data[1]}')
+            print()
+        return 'Данные успешно выведены'
+
 
 class DisciplineTeacher(Teacher):
     discipline_teacher_dict = {}
@@ -52,7 +61,7 @@ class DisciplineTeacher(Teacher):
         super().__init__(name, education, experience)
         self.__job_title = job_title
         self.__discipline = discipline
-        DisciplineTeacher.discipline_teacher_dict[self.__name] = [self.__discipline]
+        DisciplineTeacher.discipline_teacher_dict[self.get_name()] = [self.__discipline]
 
     def get_discipline(self):
         return self.__discipline
@@ -83,8 +92,13 @@ class DisciplineTeacher(Teacher):
                 f"По предмету {self.get_discipline()} как {self.__job_title}")
 
     def fire_discipline_teacher(self):
-        if self.__name in DisciplineTeacher.discipline_teacher_dict.keys():
-            DisciplineTeacher.discipline_teacher_dict.pop(self.__name)
-            return f'Учитель {self.__name} по дисциплине {self.__discipline}  был апвапуволен'
+        if self.get_name() in DisciplineTeacher.discipline_teacher_dict.keys():
+            DisciplineTeacher.discipline_teacher_dict.pop(self.get_name())
+            return f'Учитель {self.get_name()} по дисциплине {self.__discipline}  был уволен'
         else:
-            return f'Учителя {self.__name} по дисциплине {self.__discipline} уже уволили'
+            return f'Учителя {self.get_name()} по дисциплине {self.__discipline} уже уволили'
+
+# a = DisciplineTeacher('Иван', 'СГПА', 15, 'математика', 'ректор')
+# a.display_employer_data()
+# print(a.fire_discipline_teacher())
+# print(a.fire_discipline_teacher())

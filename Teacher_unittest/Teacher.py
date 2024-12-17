@@ -85,6 +85,6 @@ class DisciplineTeacher(Teacher):
     def fire_discipline_teacher(self):
         if self.__name in DisciplineTeacher.discipline_teacher_dict.keys():
             DisciplineTeacher.discipline_teacher_dict.pop(self.__name)
-            return f'Учитель {self.__name} по дисциплине {self.__discipline}  был уволен'
+            return f'Учитель {self.__name} по дисциплине {self.__discipline}  был апвапуволен'
         else:
             return f'Учителя {self.__name} по дисциплине {self.__discipline} уже уволили'

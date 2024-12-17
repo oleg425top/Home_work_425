@@ -45,7 +45,7 @@ class Teacher:
             return f'Учителя {self.__name}  уже уволили'
 
     @staticmethod
-    def display_employer_data():
+    def display_teacher_data():
         for name, data in Teacher.teacher_dict.items():
             print(f'имя: {name}')
             print(f'образование: {data[0]}')
@@ -99,6 +99,6 @@ class DisciplineTeacher(Teacher):
             return f'Учителя {self.get_name()} по дисциплине {self.__discipline} уже уволили'
 
 # a = DisciplineTeacher('Иван', 'СГПА', 15, 'математика', 'ректор')
-# a.display_employer_data()
+# a.display_teacher_data()
 # print(a.fire_discipline_teacher())
 # print(a.fire_discipline_teacher())

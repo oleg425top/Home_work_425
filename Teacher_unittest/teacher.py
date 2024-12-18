@@ -61,7 +61,7 @@ class DisciplineTeacher(Teacher):
         super().__init__(name, education, experience)
         self.__job_title = job_title
         self.__discipline = discipline
-        DisciplineTeacher.discipline_teacher_dict[self.get_name()] = [self.__discipline]
+        DisciplineTeacher.discipline_teacher_dict[self.get_name()] = [self.__discipline, self.__job_title]
 
     def get_discipline(self):
         return self.__discipline
@@ -98,7 +98,9 @@ class DisciplineTeacher(Teacher):
         else:
             return f'Учителя {self.get_name()} по дисциплине {self.__discipline} уже уволили'
 
-a = DisciplineTeacher('Иван', 'СГПА', 15, 'математика', 'ректор')
-a.display_teacher_data()
-print(a.fire_discipline_teacher())
-print(a.fire_discipline_teacher())
+# a = DisciplineTeacher('Иван', 'СГПА', 15, 'математика', 'ректор')
+# test_discipline_teacher = DisciplineTeacher('new_name', 'new_education', 66, 'test_discipline','test_job_title')
+# print(test_discipline_teacher.get_teacher_data())
+# a.display_teacher_data()
+# print(a.fire_discipline_teacher())
+# print(a.fire_discipline_teacher())

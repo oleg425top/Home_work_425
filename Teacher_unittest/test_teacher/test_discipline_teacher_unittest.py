@@ -23,3 +23,15 @@ class TestDisciplineTeacher(unittest.TestCase):
     def test_05_add_mark(self):
         self.assertEqual(self.test_discipline_teacher.add_mark('test_student', 5),
                          'new_name, поставил оценку 5 студенту test_student\nПредмет test_discipline')
+
+    def test_06_remove_mark(self):
+        self.assertEqual(self.test_discipline_teacher.remove_mark('test_student', 4), 'new_name, удалил оценку 4 студенту test_student\nПредмет test_discipline')
+
+    def test_07_give_a_consultation(self):
+        self.assertEqual(self.test_discipline_teacher.give_a_consultation('8A'), 'new_name провел консультацию в классе 8A\nПо предмету test_discipline как test_job_title')
+
+    def test_08_fire_discipline_teacher(self):
+        self.assertEqual(self.test_discipline_teacher.fire_discipline_teacher(),'Учитель new_name по дисциплине test_discipline  был уволен')
+        self.assertEqual(self.test_discipline_teacher.fire_discipline_teacher(),'Учителя new_name по дисциплине test_discipline уже уволили')
+        self.assertEqual(DisciplineTeacher.discipline_teacher_dict, {})
+        self.assertEqual(len(DisciplineTeacher.discipline_teacher_dict), 0)

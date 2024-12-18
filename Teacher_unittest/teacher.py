@@ -18,7 +18,7 @@ class Teacher:
 
     def set_experience(self, new_experience):
         self.__experience = new_experience
-        return print('Изменен опыт работы на', new_experience, 'лет')
+        return f'Изменен опыт работы на {new_experience} лет'
 
     def get_teacher_data(self):
         return f'Имя: {self.get_name()}. Образование: {self.get_education()}. Опыт работы: {self.get_experience()} (года/лет)'
@@ -98,7 +98,7 @@ class DisciplineTeacher(Teacher):
         else:
             return f'Учителя {self.get_name()} по дисциплине {self.__discipline} уже уволили'
 
-# a = DisciplineTeacher('Иван', 'СГПА', 15, 'математика', 'ректор')
-# a.display_teacher_data()
-# print(a.fire_discipline_teacher())
-# print(a.fire_discipline_teacher())
+a = DisciplineTeacher('Иван', 'СГПА', 15, 'математика', 'ректор')
+a.display_teacher_data()
+print(a.fire_discipline_teacher())
+print(a.fire_discipline_teacher())

@@ -4,10 +4,16 @@ from stack import Node, Stack
 
 
 class TestNode(unittest.TestCase):
-    test_node = Node('test_data')
+    # test_node = Node('test_data')
 
     def test_01_node_init(self):
-        self.assertEqual(TestNode.test_node.data, 'test_data')
+        test_node = Node('test_data')
+        self.assertEqual(test_node.data, 'test_data')
+        self.assertEqual(test_node.next_node, None)
+        test_node_2 = Node('test_data_2', test_node)
+        self.assertEqual(test_node_2.data, 'test_data_2')
+        self.assertEqual(test_node_2.next_node, test_node)
+        self.assertEqual(test_node_2.next_node.data, 'test_data')
 
 
 class TestStack(unittest.TestCase):
@@ -15,6 +21,7 @@ class TestStack(unittest.TestCase):
 
     def test_02_stack_init(self):
         self.assertEqual(TestStack.test_stack.stack_size, 2)
+        self.assertEqual(TestStack.test_stack.top, None)
 
     def test_03_push(self):
         self.assertEqual(TestStack.test_stack.push(10.5), None)

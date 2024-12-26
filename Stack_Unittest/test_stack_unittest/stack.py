@@ -80,7 +80,9 @@ class Stack:
         return counter
 
 # node = Node(5)
-# print(node)
+# node_2 = Node(6, node)
+# print(node.data)
+# print(node_2.next_node.data)
 # stack = Stack()
 # stack.push(1)
 # stack.push("sta")

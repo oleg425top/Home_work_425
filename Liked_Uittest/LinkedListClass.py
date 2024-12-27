@@ -122,3 +122,4 @@ if __name__ == '__main__':
     ll.insert_at_head('b')
     ll.insert_at_head('c')
     print(ll.get('b'))
+    print(ll.remove_node_position(6))

@@ -90,7 +90,7 @@ class LinkedList:
         current_node = self.head
         while current_node:
             if current_node.data == data:
-                return True, current_node
+                return True, data
             current_node = current_node.next_node
         return False, None
 

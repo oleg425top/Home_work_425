@@ -90,7 +90,7 @@ class LinkedList:
         current_node = self.head
         while current_node:
             if current_node.data == data:
-                return True, current_node
+                return data
             current_node = current_node.next_node
         return False, None
 
@@ -113,3 +113,12 @@ class LinkedList:
     #         current_node.data = change_data
     #         return "Данные изменены!"
     #     return "Данные не обнаружены"
+
+if __name__ == '__main__':
+
+    ll = LinkedList()
+
+    ll.insert_at_head('a')
+    ll.insert_at_head('b')
+    ll.insert_at_head('c')
+    print(ll.get('b'))

@@ -26,3 +26,25 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(TestLinkedList.test_ll.insert_at_head('test_data_3'),
                          'Узел с данными test_data_3 добавлен в начало списка')
         self.assertEqual(TestLinkedList.test_ll.head.next_node.data, 'test_data_2')
+
+    def test_04_insert_at_end(self):
+        self.assertEqual(TestLinkedList.test_ll.insert_at_end('end_data_1'), 'Узел с данными end_data_1 добавлен в конец списка')
+        self.assertEqual(TestLinkedList.test_ll.head.next_node.next_node.data, 'end_data_1')
+
+    def test_05_remove_node_position(self):
+        self.assertEqual(TestLinkedList.test_ll.remove_node_position(3), 'Удален узел с данными end_data_1 позиции 3')
+        self.assertEqual(TestLinkedList.test_ll.remove_node_position(1),'Удален узел с данными test_data_3 позиции 1')
+
+    def test_06_insert_at_position(self):
+        self.assertEqual(TestLinkedList.test_ll.insert_at_position('insert_data2', 2), 'Узел с данными insert_data2 добавлен на позицию 2')
+
+    def test_07_print_ll(self):
+        self.assertEqual(TestLinkedList.test_ll.print_ll(), 'Данные списка выведены')
+
+    def test_08_get(self):
+        self.assertEqual(TestLinkedList.test_ll.get('insert_data3'), (False, None))
+        self.assertEqual(TestLinkedList.test_ll.get('insert_data2'), (True, 'insert_data2'))
+
+    def test_09_change_data(self):
+        self.assertEqual(TestLinkedList.test_ll.change_data('insert_data2', 'insert_data3'), 'Заменены данные в узле № 2')
+        self.assertEqual(TestLinkedList.test_ll.change_data('insert_data2', 'insert_data5'), 'Данные не обнаружены')

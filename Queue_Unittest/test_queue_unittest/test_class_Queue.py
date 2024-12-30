@@ -1,5 +1,5 @@
 import  unittest
-from class_Queue import Node, Queue
+from class_Queue import Queue
 
 class QueueUnittest(unittest.TestCase):
     queue =Queue()

@@ -65,7 +65,7 @@ class NewLinkedList(LinkedList):
             current_node = current_node.prev_node
         return 'Информация выведена c хвоста'
 
-    def insert_at_index(self, data, node_position):
+    def insert_at_index(self, data, node_position):  # ТУТ ГДЕ-ТО ЕСТЬ ОШИБКА В МЕТОДЕ!!!!!!!
         new_node = Node(data)
         if node_position == 1:
             self.insert_at_head(data)
@@ -78,9 +78,12 @@ class NewLinkedList(LinkedList):
         if current_node is None:
             return
         new_node.next_node = current_node.next_node
-
-
+        current_node.next_node.prev_node = new_node
         current_node.next_node = new_node
+        new_node.prev_node = current_node
+        
+
+
 
 
 if __name__ == '__main__':
@@ -89,13 +92,16 @@ if __name__ == '__main__':
     list1.insert_at_head('data_2')
     list1.insert_at_head('data_1')
     list1.insert_at_tail('data_4')
-    list1.print_ll_from_head()
+    # list1.print_ll_from_head()
     print()
-    list1.print_ll_from_tail()
+    # list1.print_ll_from_tail()
     list1.insert_at_index('data_2.2', 3)
     print()
     print(list1.print_ll_from_tail())
     print()
     print(list1.print_ll_from_head())
     print()
-
+    print(list1.tail.data)
+    print(list1.tail.prev_node.data)
+    print(list1.tail.prev_node.prev_node.data)
+    print(list1.tail.prev_node.prev_node.prev_node.data)

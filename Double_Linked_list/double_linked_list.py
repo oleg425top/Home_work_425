@@ -1,3 +1,6 @@
+from os.path import curdir
+
+
 class Node:
     def __init__(self, data, next_node=None, prev_node=None):
         self.data = data
@@ -84,6 +87,13 @@ class NewLinkedList(LinkedList):
         current_node.next_node = new_node
         new_node.prev_node = current_node
 
+    def len_ll(self):
+        current_node = self.head
+        counter = 0
+        while current_node:
+            current_node = current_node.next_node
+            counter +=1
+        return counter
     def remove_node_index(self, index):
         if index == 1:
             removed_node = self.head
@@ -97,14 +107,11 @@ class NewLinkedList(LinkedList):
             current_node = current_node.next_node
             current_node_position += 1
         if current_node is None or current_node.next_node is None:
-            return f'Ничего не удалили!!!\nВ списке всего {current_node_position} элементов\nА вы выбрали {index} элемент'
+            return f'Ничего не удалили!!!\nВ списке всего {self.len_ll()} элементов\nА вы выбрали {index} элемент'
         removed_node = current_node.next_node
         current_node.next_node = current_node.next_node.next_node
         current_node.next_node.prev_node = current_node
         return f'{removed_node.data} - удаленный элемент'
-        
-
-
 
 
 if __name__ == '__main__':
@@ -113,6 +120,7 @@ if __name__ == '__main__':
     list1.insert_at_head('data_2')
     list1.insert_at_head('data_1')
     list1.insert_at_tail('data_4')
+    list1.insert_at_tail('data_5')
     # list1.print_ll_from_head()
     print()
     # list1.print_ll_from_tail()
@@ -122,7 +130,7 @@ if __name__ == '__main__':
     print()
     print(list1.print_ll_from_head())
     print()
-    print(list1.remove_node_index(6))
+    print(list1.remove_node_index(8))
     print()
     # print(list1.tail.data)
     # print(list1.tail.prev_node.data)
@@ -130,4 +138,3 @@ if __name__ == '__main__':
     print(list1.print_ll_from_head())
     print()
     print(list1.print_ll_from_tail())
-

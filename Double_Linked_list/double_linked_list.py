@@ -1,6 +1,3 @@
-from os.path import curdir
-
-
 class Node:
     def __init__(self, data, next_node=None, prev_node=None):
         self.data = data
@@ -151,14 +148,13 @@ class NewLinkedList(LinkedList):
         return False
 
     def contains_from(self, data):
-        """проверка по выбору с начала или с хвоста"""
-        user_choice = int(input('Сделайте ваш выбор\n1: Проверка на содержание элемента с головы списка;\n2: Проверка на содержание элемента с хвоста списка;\n:'))
+        """Проверка по выбору с начала или с хвоста"""
+        user_choice = int(input(
+            'Сделайте ваш выбор\n1: Проверка на содержание элемента с головы списка;\n2: Проверка на содержание элемента с хвоста списка;\n:'))
         if user_choice == 1:
             return self.contains_from_head(data)
         elif user_choice == 2:
             return self.contains_from_tail(data)
-
-
 
 
 if __name__ == '__main__':

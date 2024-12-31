@@ -130,8 +130,35 @@ class NewLinkedList(LinkedList):
                 current_node.next_node.prev_node = current_node
                 return removed_node.data
             current_node = current_node.next_node
-
         return f'ничего не удалили\nНачало: {self.head.data}'
+
+    def contains_from_head(self, data):
+        """Проверка на содержание элемента с головы списка;"""
+        current_node = self.head
+        while current_node:
+            if data == current_node.data:
+                return True
+            current_node = current_node.next_node
+        return False
+
+    def contains_from_tail(self, data):
+        """Проверка на содержание элемента с хвоста списка;"""
+        current_node = self.tail
+        while current_node:
+            if data == current_node.data:
+                return True
+            current_node = current_node.prev_node
+        return False
+
+    def contains_from(self, data):
+        """проверка по выбору с начала или с хвоста"""
+        user_choice = int(input('Сделайте ваш выбор\n1: Проверка на содержание элемента с головы списка;\n2: Проверка на содержание элемента с хвоста списка;\n:'))
+        if user_choice == 1:
+            return self.contains_from_head(data)
+        elif user_choice == 2:
+            return self.contains_from_tail(data)
+
+
 
 
 if __name__ == '__main__':
@@ -158,3 +185,9 @@ if __name__ == '__main__':
     print(list1.print_ll_from_head())
     print()
     print(list1.print_ll_from_tail())
+    print()
+    print(list1.contains_from_head('data_3'))
+    print(list1.contains_from_head('data_8'))
+    print(list1.contains_from_tail('data_8'))
+    print(list1.contains_from_tail('data_2.2'))
+    print(list1.contains_from('data_3'))

@@ -58,6 +58,7 @@ class NewLinkedList(LinkedList):
         super().__init__()
 
     def print_ll_from_tail(self):
+        """Печать списка в обратном порядке от хвоста к голове"""
         current_node = self.tail
         # print(current_node.data,'////')
         while current_node is not None:
@@ -65,7 +66,8 @@ class NewLinkedList(LinkedList):
             current_node = current_node.prev_node
         return 'Информация выведена c хвоста'
 
-    def insert_at_index(self, data, node_position):  # ТУТ ГДЕ-ТО ЕСТЬ ОШИБКА В МЕТОДЕ!!!!!!!
+    def insert_at_index(self, data, node_position):
+        """Добавление элемента по указанному индексу"""
         new_node = Node(data)
         if node_position == 1:
             self.insert_at_head(data)
@@ -81,6 +83,25 @@ class NewLinkedList(LinkedList):
         current_node.next_node.prev_node = new_node
         current_node.next_node = new_node
         new_node.prev_node = current_node
+
+    def remove_node_index(self, index):
+        if index == 1:
+            removed_node = self.head
+            self.head = self.head.next_node
+            self.head.prev_node = None
+            self.head.next_node.prev_node = self.head
+            return f'{removed_node.data} - удаленный элемент'
+        current_node = self.head
+        current_node_position = 1
+        while current_node is not None and current_node_position < index - 1:
+            current_node = current_node.next_node
+            current_node_position += 1
+        if current_node is None or current_node.next_node is None:
+            return f'Ничего не удалили!!!\nВ списке всего {current_node_position} элементов\nА вы выбрали {index} элемент'
+        removed_node = current_node.next_node
+        current_node.next_node = current_node.next_node.next_node
+        current_node.next_node.prev_node = current_node
+        return f'{removed_node.data} - удаленный элемент'
         
 
 
@@ -101,7 +122,12 @@ if __name__ == '__main__':
     print()
     print(list1.print_ll_from_head())
     print()
-    print(list1.tail.data)
-    print(list1.tail.prev_node.data)
-    print(list1.tail.prev_node.prev_node.data)
-    print(list1.tail.prev_node.prev_node.prev_node.data)
+    print(list1.remove_node_index(6))
+    print()
+    # print(list1.tail.data)
+    # print(list1.tail.prev_node.data)
+    # print(list1.tail.prev_node.prev_node.data)
+    print(list1.print_ll_from_head())
+    print()
+    print(list1.print_ll_from_tail())
+

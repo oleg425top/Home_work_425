@@ -88,13 +88,16 @@ class NewLinkedList(LinkedList):
         new_node.prev_node = current_node
 
     def len_ll(self):
+        """Узнать длину связанного списка"""
         current_node = self.head
         counter = 0
         while current_node:
             current_node = current_node.next_node
-            counter +=1
+            counter += 1
         return counter
+
     def remove_node_index(self, index):
+        """Удаление элемента, по указанному индексу"""
         if index == 1:
             removed_node = self.head
             self.head = self.head.next_node
@@ -112,6 +115,9 @@ class NewLinkedList(LinkedList):
         current_node.next_node = current_node.next_node.next_node
         current_node.next_node.prev_node = current_node
         return f'{removed_node.data} - удаленный элемент'
+
+    def remove_node_data(self):
+        """Удаление элемента по данным узла, если узел с такими данными найден он удаляется;"""
 
 
 if __name__ == '__main__':

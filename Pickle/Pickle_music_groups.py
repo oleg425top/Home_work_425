@@ -17,3 +17,4 @@ class MusicGroupsDict:
             self.music_dict[group].append(albums)
         else:
             self.music_dict.update({group: albums})
+        return f'{group}, {albums} :данные добавлены'

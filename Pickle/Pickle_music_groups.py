@@ -42,14 +42,17 @@ class MusicGroupsDict:
                         return f'Альбом: {data} найден в группе {key}'
         return f'{data}  :данные не найдены!!'
 
-    def editing(self, data_to_search, new_data):
+    def editing(self, data_to_search, *new_data):
         for key, values in self.music_dict.items():
             if key == data_to_search:
                 values.append(new_data)
-                # self.music_dict.update({key: values})
-                print('у группы:',data_to_search, 'появился новый альбом ',new_data)
+                if len(values) == 1:
+                    print('у группы:',data_to_search, 'появился новый альбом ',new_data)
+                else:
+                    print('у группы:',data_to_search, 'появились новые альбомы ',new_data)
+
                 return self.music_dict
-        return f'{data_to_search} такой группы нет в списке'
+        return f'{data_to_search} :такой группы нет в списке'
 
 
 
@@ -78,6 +81,7 @@ if __name__ == '__main__':
     print(group.search('A Hard Days Night (1964)'))
     print(group.search('A Hard Days Night (1965)'))
     print(group.search('The Rolling Stones'))
-    group.editing('Nirvana','In Utero (1993)')
+    group.editing('Nirvana','In Utero (1993)','raka_maka_fo(2025)')
+    print(group.editing('Nirsvana','In Utero (1993)','raka_maka_fo(2025)'))
     print(group.show())
 

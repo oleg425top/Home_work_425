@@ -42,6 +42,19 @@ class MusicGroupsDict:
                         return f'Альбом: {data} найден в группе {key}'
         return f'{data}  :данные не найдены!!'
 
+    def editing(self, data_to_search, new_data):
+        for key, values in self.music_dict.items():
+            if key == data_to_search:
+                values.append(new_data)
+                # self.music_dict.update({key: values})
+                print('у группы:',data_to_search, 'появился новый альбом ',new_data)
+                return self.music_dict
+        return f'{data_to_search} такой группы нет в списке'
+
+
+
+
+
 
 if __name__ == '__main__':
     group = MusicGroupsDict()
@@ -57,6 +70,7 @@ if __name__ == '__main__':
     # print(group.show())
     group.add_group('Pink Floyd', 'The Piper at the Gates of Dawn (1967)', 'The Dark Side of the Moon (1973)',
                     'Wish You Were Here (1975)', 'Animals (1977)', 'The Wall (1979)')
+    group.add_group('Nirvana', 'Bleach (1989)', 'Nevermind (1991)')
     print(group.show())
     print(group.delete_data('Pink Floyd'))
     print(group.delete_data('Pinks Floyd'))
@@ -64,3 +78,6 @@ if __name__ == '__main__':
     print(group.search('A Hard Days Night (1964)'))
     print(group.search('A Hard Days Night (1965)'))
     print(group.search('The Rolling Stones'))
+    group.editing('Nirvana','In Utero (1993)')
+    print(group.show())
+

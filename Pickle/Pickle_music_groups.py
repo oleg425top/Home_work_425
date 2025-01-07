@@ -1,13 +1,6 @@
 import pickle
+from pickle import HIGHEST_PROTOCOL, Unpickler
 
-
-def load_from_file(name_of_file):
-    try:
-        with open(name_of_file, 'rb') as fp:
-            load_data = pickle.load(fp)
-    except FileNotFoundError:
-        return 'File Not Found'
-    return f'Данные: {load_data} получены из файла {name_of_file}'
 
 
 class MusicGroupsDict:
@@ -47,16 +40,50 @@ class MusicGroupsDict:
             if key == data_to_search:
                 values.append(new_data)
                 if len(values) == 1:
-                    print('у группы:',data_to_search, 'появился новый альбом ',new_data)
+                    print('у группы:', data_to_search, 'появился новый альбом ', new_data)
                 else:
-                    print('у группы:',data_to_search, 'появились новые альбомы ',new_data)
+                    print('у группы:', data_to_search, 'появились новые альбомы ', new_data)
 
                 return self.music_dict
         return f'{data_to_search} :такой группы нет в списке'
 
 
+def save_to_file(name_of_file, data):
+    with open(f'{name_of_file}.music', 'wb') as fp:
+        pickle.dump(data, fp, HIGHEST_PROTOCOL)
+    return f'данные записаны в файл {name_of_file}.music'
 
 
+class Pickler:
+
+    def __init__(self, protocol=pickle.HIGHEST_PROTOCOL):
+        if protocol < 0 or protocol > 5:
+            self.protocol = pickle.DEFAULT_PROTOCOL
+        elif protocol == 0:
+            self.protocol = pickle.HIGHEST_PROTOCOL
+        else:
+            self.protocol = protocol
+
+    def pickle_data(self, data):
+        pickle_data = pickle.dumps(data, self.protocol)
+        return pickle_data
+
+
+class UnPicklerGroups:
+    @classmethod
+    def unpickle_data(cls, pickle_data):
+        unpickled_data = pickle.loads(pickle_data)
+        return unpickled_data
+
+    @classmethod
+    def load_from_file(cls, name_of_file):
+        try:
+            with open(name_of_file, 'rb') as fp:
+                load_data = pickle.load(fp)
+        except FileNotFoundError:
+            return 'File Not Found'
+        # return f'Данные: {load_data} получены из файла {name_of_file}'
+        return load_data
 
 
 if __name__ == '__main__':
@@ -81,7 +108,16 @@ if __name__ == '__main__':
     print(group.search('A Hard Days Night (1964)'))
     print(group.search('A Hard Days Night (1965)'))
     print(group.search('The Rolling Stones'))
-    group.editing('Nirvana','In Utero (1993)','raka_maka_fo(2025)')
-    print(group.editing('Nirsvana','In Utero (1993)','raka_maka_fo(2025)'))
+    group.editing('Nirvana', 'In Utero (1993)', 'raka_maka_fo(2025)')
+    print(group.editing('Nirsvana', 'In Utero (1993)', 'raka_maka_fo(2025)'))
     print(group.show())
+    pickle_group = Pickler(5)
+    group = pickle_group.pickle_data(group)
+    print(group)
+    group = UnPicklerGroups.unpickle_data(group)
+    print(group)
+    print(group.show())
+    print(save_to_file('group_list',group))
+    group = UnPicklerGroups.load_from_file('group_list.music')
+    print(group)
 

@@ -19,27 +19,19 @@ class JSONStadiumAdapter:
     @staticmethod
     def to_json(obj):
         if isinstance(obj, Stadium):
-            return json.dumps({
-                'name: ': obj.name,
-                'capacity: ': obj.capacity,
-                'year opened: ': obj.year_opened,
-                '<Class>: ': obj.__class__.__name__,
-                '<Methods>: ': {
-                    'display_info': obj.display_info(),
-                    'change_capacity: ': obj.change_capacity(20000)
-                }
-
-            })
+            return {'name': obj.name, 'capacity': obj.capacity, 'year opened': obj.year_opened,
+                    '<Class>': obj.__class__.__name__,
+                    '<Methods>': {'display_info': obj.display_info(), 'change_capacity: ': obj.change_capacity(20000)}}
 
     @staticmethod
     def from_json(obj):
-        obj = json.loads(obj)
 
-        try :
-            result = Stadium(obj['name: '], obj['capacity: '], obj['year opened: '])
+        try:
+            result = Stadium(obj['name'], obj['capacity'], obj['year opened'])
             return result
         except AttributeError:
             print('неверная структура')
+
 
 if __name__ == '__main__':
     my_stadium = Stadium("Wembley Stadium", 90000, 2007)
@@ -49,3 +41,10 @@ if __name__ == '__main__':
     print(python_stadium.display_info())
     print(python_stadium.change_capacity(120000))
     print(python_stadium.display_info())
+    with open(r'stadium.json', 'w', encoding='utf-8') as fh:
+        json.dump(my_stadium, fh, default=JSONStadiumAdapter.to_json, ensure_ascii=False, indent=3)
+        # fh.write(json_stadium)
+    with open(r'stadium.json', 'r', encoding='utf-8') as fh:
+        python_stadium = json.load(fh)
+
+    print(python_stadium)

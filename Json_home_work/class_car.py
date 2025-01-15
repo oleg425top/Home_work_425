@@ -1,5 +1,5 @@
 import pickle
-
+import json
 
 class Car:
     def __init__(self, brand, model, milage):
@@ -52,6 +52,7 @@ class MyUnPickler:
 
 if __name__ == '__main__':
     car = Car('Lada', 'Largus',  100000)
+    print(car.__dict__)
     car.display_info()
     car.change_milage(80000)
     car.display_info()
@@ -65,3 +66,12 @@ if __name__ == '__main__':
     unpickle_car.display_info()
     unpickle_car_from_file = MyUnPickler.unpickled_file('pickle_car.car')
     unpickle_car_from_file.display_info()
+    unpickle_car_from_file.change_milage(200000)
+    unpickle_car_from_file.display_info()
+    with open(r'car.json', 'w', encoding='utf-8') as file:
+        json.dump(car, file, default=lambda obj_car: obj_car.__dict__, ensure_ascii=False, indent=2)
+
+    with open(r'car.json', 'r', encoding='utf-8') as file:
+        python_car = json.load(file)
+
+    print(python_car)

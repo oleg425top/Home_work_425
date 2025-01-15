@@ -64,7 +64,14 @@ class MyBookEncoder(json.JSONEncoder):
                 'change_year: ': o.change_year(1950)
             }
         }
+if __name__ == '__main__':
 
-my_book = Book("1984", "George Orwell", 1949)
-json_book = json.dumps(my_book, cls=MyBookEncoder, ensure_ascii=False, indent=3)
-print(json_book)
+    my_book = Book("1984", "George Orwell", 1949)
+    json_book = json.dumps(my_book, cls=MyBookEncoder, ensure_ascii=False, indent=3)
+    print(json_book)
+    with open(r'class_book.json', 'w', encoding='utf-8') as fh:
+        json.dump(my_book, fh, cls=MyBookEncoder, ensure_ascii=False, indent=3)
+
+    with open(r'class_book.json', 'r', encoding='utf-8') as fh:
+        python_book_from_json = json.load(fh)
+    print(python_book_from_json)

@@ -8,7 +8,9 @@ def load_from_file(name_of_file):
             load_data = pickle.load(fp)
     except FileNotFoundError:
         return 'File Not Found'
-    return f'Данные: {load_data} получены из файла {name_of_file}'
+    finally:
+        print('до свидания!!')
+    return load_data
 
 
 class CountriesDict:

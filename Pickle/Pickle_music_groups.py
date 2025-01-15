@@ -39,7 +39,7 @@ class MusicGroupsDict:
         for key, values in self.music_dict.items():
             if key == data_to_search:
                 values.append(new_data)
-                if len(values) == 1:
+                if len(new_data) == 1:
                     print('у группы:', data_to_search, 'появился новый альбом ', new_data)
                 else:
                     print('у группы:', data_to_search, 'появились новые альбомы ', new_data)
@@ -109,6 +109,8 @@ if __name__ == '__main__':
     print(group.search('A Hard Days Night (1965)'))
     print(group.search('The Rolling Stones'))
     group.editing('Nirvana', 'In Utero (1993)', 'raka_maka_fo(2025)')
+    group.editing('Nirvana', 'In Uteros (1999)')
+    print(group.editing('Nirvana', 'In Uteros (1999)'))
     print(group.editing('Nirsvana', 'In Utero (1993)', 'raka_maka_fo(2025)'))
     print(group.show())
     pickle_group = Pickler(5)

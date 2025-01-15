@@ -1,4 +1,4 @@
-import json
+import json, pickle
 
 
 class Stadium:
@@ -21,7 +21,7 @@ class JSONStadiumAdapter:
         if isinstance(obj, Stadium):
             return {'name': obj.name, 'capacity': obj.capacity, 'year opened': obj.year_opened,
                     '<Class>': obj.__class__.__name__,
-                    '<Methods>': {'display_info': obj.display_info(), 'change_capacity: ': obj.change_capacity(20000)}}
+                    '<Methods>': {'display_info': obj.display_info(), 'change_capacity: ': obj.change_capacity(120000)}}
 
     @staticmethod
     def from_json(obj):
@@ -48,3 +48,14 @@ if __name__ == '__main__':
         python_stadium = json.load(fh)
 
     print(python_stadium)
+
+    with open(r'pickle_stadium.pkl', 'wb') as bp:
+        pickle.dump(my_stadium, bp)
+
+    try:
+        with open(r'pickle_stadium.pkl', 'rb') as bp:
+            python_stadium = pickle.load(bp)
+    except FileNotFoundError:
+        print('File not Find!!!')
+
+    print(python_stadium.display_info())

@@ -121,5 +121,5 @@ if __name__ == '__main__':
     print(group.show())
     print(save_to_file('group_list',group))
     group = UnPicklerGroups.load_from_file('group_list.music')
-    print(group)
+    print(group.show())
 

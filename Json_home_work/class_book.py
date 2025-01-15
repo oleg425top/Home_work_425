@@ -1,5 +1,7 @@
 import pickle
 import json
+from json import JSONEncoder
+
 
 class Book:
     def __init__(self, title, author, year):
@@ -8,11 +10,11 @@ class Book:
         self.year = year
 
     def display_info(self):
-        print(f"Название: {self.title}, Автор: {self.author}, Год: {self.year}")
+        return f"Название: {self.title}, Автор: {self.author}, Год: {self.year}"
 
     def change_year(self, new_year):
         self.year = new_year
-        print(f"Год издания был изменен на: {self.year}")
+        return f"Год издания был изменен на: {self.year}"
 
 class MyPickler:
     def __init__(self, protocol=pickle.HIGHEST_PROTOCOL):
@@ -48,3 +50,21 @@ class MyUnPickler:
             return 'Файл не найден'
         else:
             return unpickle_data
+
+class MyBookEncoder(json.JSONEncoder):
+
+    def default(self, o):
+        return {
+            'Название: ': o.title,
+            'Автор: ': o.author,
+            'Год издания: ': o.year,
+            'Название класса: ': o.__class__.__name__,
+            'Методы класса: ':{
+                'display_info: ':o.display_info(),
+                'change_year: ': o.change_year(1950)
+            }
+        }
+
+my_book = Book("1984", "George Orwell", 1949)
+json_book = json.dumps(my_book, cls=MyBookEncoder, ensure_ascii=False, indent=3)
+print(json_book)

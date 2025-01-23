@@ -116,7 +116,6 @@ class Director:
     def level_the_walls(self) -> None:
         print(f'Стены выровнены: {self.name}')
 
-
     def turnkey_work(self):
         print(f'Работы под ключ от: {self.builder.name}')
         self.builder.first_action()
@@ -130,7 +129,6 @@ if __name__ == '__main__':
     director.builder = tiler
     director.turnkey_work()
     tiler.product.list_parts()
-
     painter = Painter()
     director.builder = painter
     director.turnkey_work()
@@ -142,3 +140,5 @@ if __name__ == '__main__':
     finisher.product.list_parts()
     tiler.first_action()
     tiler.product.list_parts()
+    director.level_the_walls()
+    director.make_floors()

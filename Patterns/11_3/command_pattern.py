@@ -28,15 +28,17 @@ class SimpleFood(Command):
 
 class ComplexFood(Command):
 
-    def __init__(self, cook: CookReceiver, a: str, b: str) -> None:
+    def __init__(self, cook: CookReceiver, a: str = None, b: str = None) -> None:
         self._a = a
         self._b = b
         self._cook = cook
 
     def execute(self) -> None:
         print('Повар получил заказ и приступил к приготовлению блюд...')
-        self._cook.cooking_first_course(self._a)
-        self._cook.cooking_second_course(self._b)
+        if self._a:
+            self._cook.cooking_first_course(self._a)
+        if self._b:
+            self._cook.cooking_second_course(self._b)
 
 
 class CookReceiver:
@@ -76,3 +78,6 @@ if __name__ == '__main__':
     cook1 = CookReceiver()
     waiter.get_order(ComplexFood(cook1, 'суп', 'пюре'))
     waiter.pay_for_order(PayForOrder(1200))
+
+    waiter.get_order(ComplexFood(cook1, 'жаркое'))
+    waiter.pay_for_order(PayForOrder(800))

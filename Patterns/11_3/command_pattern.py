@@ -19,7 +19,7 @@ class PayForOrder(Command):
 
 
 class SimpleFood(Command):
-    def __init__(self, payload:str) -> None:
+    def __init__(self, payload: str) -> None:
         self._payload = payload
 
     def execute(self):
@@ -69,15 +69,24 @@ class WaiterInvoker:
         print('Повар: вы бы хотели что нибудь добавить к заказу, прежде чем я начну')
         if isinstance(self._get_order, Command):
             self._get_order.execute()
-        print('Повар: может десерт?')
+
+
 
 
 if __name__ == '__main__':
     waiter = WaiterInvoker()
-    waiter.wait_order(SimpleFood('Закуска'))
     cook1 = CookReceiver()
+    waiter.wait_order(SimpleFood('Закуска'))
+    waiter.get_order(ComplexFood(cook1, 'Бифштекс', 'салат'))
+
+    waiter.pay_for_order(PayForOrder(1800))
+
     waiter.get_order(ComplexFood(cook1, 'суп', 'пюре'))
     waiter.pay_for_order(PayForOrder(1200))
 
     waiter.get_order(ComplexFood(cook1, 'жаркое'))
     waiter.pay_for_order(PayForOrder(800))
+
+    cook1.cooking_first_course('Солянка')
+    cook1.cooking_second_course('Гречка')
+    waiter.get_order(ComplexFood(cook1, 'Спагетти'))

@@ -75,3 +75,4 @@ if __name__ == '__main__':
     with open(r'class_book.json', 'r', encoding='utf-8') as fh:
         python_book_from_json = json.load(fh)
     print(python_book_from_json)
+

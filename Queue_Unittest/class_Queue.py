@@ -48,9 +48,14 @@ class Queue:
     def get_queue_len(self):
         """Получение длины очереди"""
         items_counter = 0
-        if self.head is None:
+        current_node = self.head
+        if current_node is None:
             return items_counter
-        return self.counter
+        else:
+            while current_node is not None:
+                current_node = current_node.next_node
+                items_counter +=1
+        return items_counter
 
     def is_full(self):
         """Проверка очереди на заполненность """
@@ -93,3 +98,4 @@ if __name__ == '__main__':
     print(q1.is_full())
     print()
     print(q1.show_queue())
+    print(q1.get_queue_len())

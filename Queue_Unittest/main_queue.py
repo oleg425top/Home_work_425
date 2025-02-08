@@ -11,18 +11,15 @@ def choice(number, queue):
         else:
             print('очередь не пуста')
     if number == 2:
-        result_2 = queue.is_full()
-        if result_2:
+        if queue.is_full():
             print('очередь заполнена')
         else:
             print('очередь не заполнена')
     if number == 3:
-        full = queue.is_full()
-        if full:
+        if queue.is_full():
             print('очередь уже заполнена')
             return
         else:
-
             return queue.enqueue(input('введите данные: ')), print('данные введены')
     if number == 4:
         return queue.dequeue()

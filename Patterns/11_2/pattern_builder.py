@@ -20,10 +20,12 @@ class Builder(ABC):
     def second_action(self) -> None:
         pass
 
-
+"""Плиточник"""
 class Tiler(Builder):
 
     def __init__(self) -> None:
+        super().__init__()
+        self._product = None
         self.reset()
         self.name = 'Плиточник'
 
@@ -42,9 +44,11 @@ class Tiler(Builder):
     def second_action(self) -> None:
         self._product.add("укладка плитки")
 
-
+"""Отделочник"""
 class Finisher(Builder):
     def __init__(self) -> None:
+        super().__init__()
+        self._product = None
         self.reset()
         self.name = 'Отделочник'
 
@@ -63,9 +67,11 @@ class Finisher(Builder):
     def second_action(self) -> None:
         self._product.add("оштукатурить стены")
 
-
+"""Маляр"""
 class Painter(Builder):
     def __init__(self) -> None:
+        super().__init__()
+        self._product = None
         self.name = 'Маляр'
         self.reset()
 
@@ -111,9 +117,11 @@ class Director:
         self._builder = builder
 
     def make_floors(self) -> None:
-        print(f'Полы закончены: {self.name}')
+        self.builder.second_action()
+        print(f'Полы закончены: {self.builder.name}')
 
     def level_the_walls(self) -> None:
+        self.builder.second_action()
         print(f'Стены выровнены: {self.name}')
 
     def turnkey_work(self):
@@ -123,7 +131,7 @@ class Director:
 
 
 if __name__ == '__main__':
-    print('Работа под ключ: ')
+    # print('Работа под ключ: ')
     director = Director()
     tiler = Tiler()
     director.builder = tiler
